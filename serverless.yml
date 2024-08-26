@@ -1,0 +1,20 @@
+service: serverless-first-project
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+  stage: ${opt:stage, 'dev'}
+  region: ${opt:region, 'us-east-1'}
+  memorySize: 128
+  timeout: 3
+plugins:
+  - serverless-offline
+functions:
+  handler:
+    handler: index.handler
+    description: First lambda sample
+    events:
+      - http:
+          path: /
+          method: get
+          cors: true
